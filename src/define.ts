@@ -597,9 +597,7 @@ export class DataStructure {
       );
       mod.interfaces.forEach(inter => {
         inter.samePath = samePath;
-        inter.name = inter.operationId
-          ? getIdentifierFromOperatorId(inter.operationId)
-          : getIdentifierFromUrl(inter.path, inter.method, samePath);
+        inter.name = getIdentifierFromUrl(inter.path, inter.method, samePath);
       });
       mod.interfaces = _.uniqBy(mod.interfaces, "name");
       mod.description = tag.name;
