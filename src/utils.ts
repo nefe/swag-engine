@@ -97,6 +97,10 @@ export function getIdentifierFromUrl(
   );
 }
 
+export function getIdentifierFromOperatorId(operationId: string) {
+  return operationId.replace(/(.+)(Using.+)/, "$1");
+}
+
 export function getTemplate(templatePath, rootPath?: string): Template {
   const root = rootPath || PROJECT_ROOT;
   const TEMPLATE_PATH = path.join(root, templatePath);

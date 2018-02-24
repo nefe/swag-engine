@@ -1,6 +1,11 @@
 import * as _ from "lodash";
 import * as debugLog from "./debugLog";
-import { getModelByRef, getIdentifierFromUrl, getMaxSamePath } from "./utils";
+import {
+  getModelByRef,
+  getIdentifierFromUrl,
+  getMaxSamePath,
+  getIdentifierFromOperatorId
+} from "./utils";
 
 export enum Type {
   integer = "integer",
@@ -305,6 +310,8 @@ export class Interface {
 
   samePath: string;
 
+  operationId: string;
+
   get def() {
     return this.response.dep;
   }
@@ -318,6 +325,10 @@ export class Interface {
     this.response = new Schema(inter.response);
     this.method = inter.method;
     this.path = inter.path;
+
+    if (inter.operationId) {
+      this.operationId = inter.operationId;
+    }
 
     if (inter.name) {
       this.name = inter.name;
@@ -586,7 +597,9 @@ export class DataStructure {
       );
       mod.interfaces.forEach(inter => {
         inter.samePath = samePath;
-        inter.name = getIdentifierFromUrl(inter.path, inter.method, samePath);
+        inter.name = inter.operationId
+          ? getIdentifierFromOperatorId(inter.operationId)
+          : getIdentifierFromUrl(inter.path, inter.method, samePath);
       });
       mod.interfaces = _.uniqBy(mod.interfaces, "name");
       mod.description = tag.name;
