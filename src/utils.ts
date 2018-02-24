@@ -97,8 +97,20 @@ export function getIdentifierFromUrl(
   );
 }
 
+/** some reversed keyword in js but not in java */
+const TS_KEYWORDS = ["delete"];
+const REPLACE_WORDS = ["remove"];
+
 export function getIdentifierFromOperatorId(operationId: string) {
-  return operationId.replace(/(.+)(Using.+)/, "$1");
+  const identifier = operationId.replace(/(.+)(Using.+)/, "$1");
+
+  const index = TS_KEYWORDS.indexOf(identifier);
+
+  if (index === -1) {
+    return identifier;
+  }
+
+  return REPLACE_WORDS[index];
 }
 
 export function getTemplate(templatePath, rootPath?: string): Template {

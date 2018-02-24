@@ -1,6 +1,6 @@
 {
   "name": "swag-engine",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "swagger docs to auto write typescript API",
   "main": "lib/core.js",
   "typings": "src/core.ts",
