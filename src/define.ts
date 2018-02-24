@@ -26,6 +26,7 @@ export class Property {
   $ref? = "";
   description? = "";
   name: string;
+  required: boolean;
 
   constructor(prop) {
     this.type = prop.type;
@@ -34,6 +35,7 @@ export class Property {
     this.items = prop.items;
     this.$ref = prop.$ref;
     this.description = prop.description;
+    this.required = prop.required;
   }
 
   get dep() {
@@ -156,7 +158,7 @@ export class Property {
           }
           return `
 							${property.description ? `/** ${property.description} */` : ""}
-							${property.name}: ${finalType}
+							${property.name}${property.required ? "" : "?"}: ${finalType}
 						`;
         }).join("\n")}
       }
@@ -434,6 +436,7 @@ export class DataSource {
   definitions: {
     [key in string]: {
       description: string;
+      required?: string[];
       properties: { [key in string]: Property };
     }
   };
@@ -449,6 +452,7 @@ export interface Definition {
   name: string;
   description: string;
   properties: Property[];
+  required: string[];
   type: DiffType;
   /** 直接影响的基类 */
   infs: Definition[];
@@ -623,12 +627,14 @@ export class DataStructure {
         if (defName.includes("«")) {
           defName = defName.slice(0, defName.indexOf("«"));
         }
+        const required = def.required || [];
 
         return {
           name: defName,
           properties: _.map(def.properties, (prop, propName) => {
             return new Property({
               ...prop,
+              required: required.includes(propName) ? true : false,
               name: propName
             });
           }),
