@@ -1,6 +1,6 @@
 {
   "name": "swag-engine",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "swagger docs to auto write typescript API",
   "main": "lib/core.js",
   "typings": "src/core.ts",
@@ -35,8 +35,7 @@
     "@types/node": "^8.0.47",
     "@types/node-fetch": "^1.6.7",
     "@types/prettier": "^1.10.0",
-    "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "ts-node": "^3.3.0"
   },
   "dependencies": {
     "chalk": "^2.3.0",
@@ -44,6 +43,7 @@
     "fs-extra": "^5.0.0",
     "lodash": "^4.17.4",
     "node-fetch": "^1.7.3",
+    "typescript": "^2.6.1",
     "prettier": "1.9"
   }
 }
