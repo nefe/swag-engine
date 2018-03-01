@@ -478,7 +478,7 @@ export class DataStructure {
 
         return rest;
       })
-    });
+    }, null, 2);
   }
 
   static getDataFromLock(data: DataStructure) {

@@ -36,14 +36,6 @@
   version "1.10.0"
   resolved "http://registry.npm.alibaba-inc.com/@types/prettier/download/@types/prettier-1.10.0.tgz#5abf1ec0a6e904fe2490cc2068f36a38e4a63c42"
 
-ansi-regex@^0.2.0, ansi-regex@^0.2.1:
-  version "0.2.1"
-  resolved "http://registry.npm.alibaba-inc.com/ansi-regex/download/ansi-regex-0.2.1.tgz#0d8e946967a3d8143f93e24e298525fc1b2235f9"
-
-ansi-styles@^1.1.0:
-  version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/ansi-styles/download/ansi-styles-1.1.0.tgz#eaecbf66cd706882760b2f4691582b8f55d7a7de"
-
 ansi-styles@^3.1.0:
   version "3.2.0"
   resolved "http://registry.npm.alibaba-inc.com/ansi-styles/download/ansi-styles-3.2.0.tgz#c159b8d5be0f9e5a6f346dab94f16ce022161b88"
@@ -53,16 +45,6 @@ ansi-styles@^3.1.0:
 arrify@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.alibaba-inc.com/arrify/download/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
-
-chalk@^0.5.1:
-  version "0.5.1"
-  resolved "http://registry.npm.alibaba-inc.com/chalk/download/chalk-0.5.1.tgz#663b3a648b68b55d04690d49167aa837858f2174"
-  dependencies:
-    ansi-styles "^1.1.0"
-    escape-string-regexp "^1.0.0"
-    has-ansi "^0.1.0"
-    strip-ansi "^0.3.0"
-    supports-color "^0.2.0"
 
 chalk@^2.0.0, chalk@^2.3.0:
   version "2.3.0"
@@ -86,10 +68,6 @@ commander@^2.11.0:
   version "2.11.0"
   resolved "http://registry.npm.alibaba-inc.com/commander/download/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
-deep-diff@^0.3.8:
-  version "0.3.8"
-  resolved "http://registry.npm.alibaba-inc.com/deep-diff/download/deep-diff-0.3.8.tgz#c01de63efb0eec9798801d40c7e0dae25b582c84"
-
 diff@^3.1.0:
   version "3.4.0"
   resolved "http://registry.npm.alibaba-inc.com/diff/download/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
@@ -100,7 +78,7 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.5:
+escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "http://registry.npm.alibaba-inc.com/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
@@ -115,12 +93,6 @@ fs-extra@^5.0.0:
 graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "http://registry.npm.alibaba-inc.com/graceful-fs/download/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
-
-has-ansi@^0.1.0:
-  version "0.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/has-ansi/download/has-ansi-0.1.0.tgz#84f265aae8c0e6a88a12d7022894b7568894c62e"
-  dependencies:
-    ansi-regex "^0.2.0"
 
 has-flag@^2.0.0:
   version "2.0.0"
@@ -139,12 +111,6 @@ iconv-lite@~0.4.13:
 is-stream@^1.0.1:
   version "1.1.0"
   resolved "http://registry.npm.alibaba-inc.com/is-stream/download/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
-
-jsondiffpatch@^0.2.5:
-  version "0.2.5"
-  resolved "http://registry.npm.alibaba-inc.com/jsondiffpatch/download/jsondiffpatch-0.2.5.tgz#50361d995cf8c86137e8d5589f20fa5220db3511"
-  dependencies:
-    chalk "^0.5.1"
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -199,12 +165,6 @@ source-map@^0.5.6:
   version "0.5.7"
   resolved "http://registry.npm.alibaba-inc.com/source-map/download/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
-strip-ansi@^0.3.0:
-  version "0.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/strip-ansi/download/strip-ansi-0.3.0.tgz#25f48ea22ca79187f3174a4db8759347bb126220"
-  dependencies:
-    ansi-regex "^0.2.1"
-
 strip-bom@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.alibaba-inc.com/strip-bom/download/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
@@ -212,10 +172,6 @@ strip-bom@^3.0.0:
 strip-json-comments@^2.0.0:
   version "2.0.1"
   resolved "http://registry.npm.alibaba-inc.com/strip-json-comments/download/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
-
-supports-color@^0.2.0:
-  version "0.2.0"
-  resolved "http://registry.npm.alibaba-inc.com/supports-color/download/supports-color-0.2.0.tgz#d92de2694eb3f67323973d7ae3d8b55b4c22190a"
 
 supports-color@^4.0.0:
   version "4.5.0"
