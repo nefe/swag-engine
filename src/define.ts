@@ -108,6 +108,11 @@ export class Property {
     if (this.type === Type.array) {
       return "[]";
     }
+
+    if (this.type === Type.string) {
+      return "''";
+    }
+
     return "";
   }
 
