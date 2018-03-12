@@ -476,14 +476,18 @@ export class DataStructure {
   definitions: Definition[];
 
   serialize() {
-    return JSON.stringify({
-      mods: this.mods,
-      definitions: this.definitions.map(def => {
-        const { infs, modInfs, indirectModInfs, indirectInfs, ...rest } = def;
+    return JSON.stringify(
+      {
+        mods: this.mods,
+        definitions: this.definitions.map(def => {
+          const { infs, modInfs, indirectModInfs, indirectInfs, ...rest } = def;
 
-        return rest;
-      })
-    }, null, 2);
+          return rest;
+        })
+      },
+      null,
+      2
+    );
   }
 
   static getDataFromLock(data: DataStructure) {
@@ -605,8 +609,8 @@ export class DataStructure {
         mod.interfaces.map(inter => inter.path.slice(1))
       );
       mod.interfaces.forEach(inter => {
-        inter.samePath = samePath;
         inter.name = getIdentifierFromUrl(inter.path, inter.method, samePath);
+        inter.samePath = samePath;
       });
       mod.interfaces = _.uniqBy(mod.interfaces, "name");
       mod.description = tag.name;
