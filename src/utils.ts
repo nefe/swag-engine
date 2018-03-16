@@ -36,6 +36,15 @@ export async function format(fileContent: string, prettierOpts) {
   }
 }
 
+export function transformDescription(description: string) {
+  const words = description.split(' ').filter(word => word !== 'Controller');
+
+  const [firstWord, ...rest] = words;
+  const sFirstWord = firstWord.charAt(0).toLowerCase() + firstWord.slice(1);
+
+  return [sFirstWord, ...rest].join('');
+}
+
 export function clearPath(path: string) {
   if (fs.existsSync(path)) {
     fs.removeSync(path);

@@ -4,7 +4,8 @@ import {
   getModelByRef,
   getIdentifierFromUrl,
   getMaxSamePath,
-  getIdentifierFromOperatorId
+  getIdentifierFromOperatorId,
+  transformDescription
 } from "./utils";
 
 export enum Type {
@@ -626,7 +627,9 @@ export class DataStructure {
         );
       }
 
-      mod.name = tag.description;
+      // TODO 这里暂时先做特殊处理。目前 tag 的 description 是有问题的，要做特殊处理。
+      // 并且这里暂时混用了 description 和 name。需要后端配合才能解决
+      mod.name = transformDescription(tag.description);
 
       return mod;
     });
