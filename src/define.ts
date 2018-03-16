@@ -532,6 +532,19 @@ export class DataStructure {
 
   log = (message?: string) => {};
 
+  deleteMode(mod: Mod, onLog?) {
+    this.log = debugLog.bindInfo(onLog);
+
+    const isExists = this.mods.find(iMod => iMod.name === mod.name);
+    if (isExists) {
+      this.log(
+        `swag 将删除模块 ${mod.name}(${mod.description}) ！`
+      );
+
+      this.mods = this.mods.filter(iMod => iMod.name !== mod.name);
+    }
+  }
+
   updateMod(mod: Mod, onLog?) {
     this.log = debugLog.bindInfo(onLog);
     const isExists = this.mods.find(iMod => iMod.name === mod.name);
@@ -551,13 +564,24 @@ export class DataStructure {
     }
   }
 
+  deleteDefinition(def: Definition, onLog?) {
+    this.log = debugLog.bindInfo(onLog);
+    const isExists = this.definitions.find(iDef => iDef.name === def.name);
+
+    if (isExists) {
+      this.log(`swag 将删除基类 ${def.name} ！`);
+
+      this.definitions = this.definitions.filter(iDef => iDef.name !== def.name);
+    }
+  }
+
   updateDefinition(def: Definition, onLog?) {
     this.log = debugLog.bindInfo(onLog);
     const isExists = this.definitions.find(iDef => iDef.name === def.name);
 
     if (isExists) {
       this.log(`基类 ${def.name} 已存在。swag 将更新该基类`);
-      const index = this.definitions.findIndex(iMod => iMod.name === def.name);
+      const index = this.definitions.findIndex(iDef => iDef.name === def.name);
 
       this.definitions[index] = def;
     } else {
