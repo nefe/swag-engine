@@ -644,12 +644,12 @@ export class DataStructure {
       mod.feOwners = feMatch && feMatch[1].split(",");
       mod.beOwners = beMatch && beMatch[1].split(",");
 
-      if (tag.description.includes(" ")) {
-        tag.description = tag.description.slice(
-          0,
-          tag.description.indexOf(" ")
-        );
-      }
+      // if (tag.description.includes(" ")) {
+      //   tag.description = tag.description.slice(
+      //     0,
+      //     tag.description.indexOf(" ")
+      //   );
+      // }
 
       // TODO 这里暂时先做特殊处理。目前 tag 的 description 是有问题的，要做特殊处理。
       // 并且这里暂时混用了 description 和 name。需要后端配合才能解决
