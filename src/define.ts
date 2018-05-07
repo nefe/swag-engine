@@ -537,9 +537,7 @@ export class DataStructure {
 
     const isExists = this.mods.find(iMod => iMod.name === mod.name);
     if (isExists) {
-      this.log(
-        `swag 将删除模块 ${mod.name}(${mod.description}) ！`
-      );
+      this.log(`swag 将删除模块 ${mod.name}(${mod.description}) ！`);
 
       this.mods = this.mods.filter(iMod => iMod.name !== mod.name);
     }
@@ -571,7 +569,9 @@ export class DataStructure {
     if (isExists) {
       this.log(`swag 将删除基类 ${def.name} ！`);
 
-      this.definitions = this.definitions.filter(iDef => iDef.name !== def.name);
+      this.definitions = this.definitions.filter(
+        iDef => iDef.name !== def.name
+      );
     }
   }
 
@@ -591,7 +591,7 @@ export class DataStructure {
     }
   }
 
-  constructor(data?: DataSource) {
+  constructor(data?: DataSource, usingOperationId = false) {
     if (!data) {
       return;
     }
@@ -634,15 +634,19 @@ export class DataStructure {
         mod.interfaces.map(inter => inter.path.slice(1))
       );
       mod.interfaces.forEach(inter => {
-        inter.name = getIdentifierFromUrl(inter.path, inter.method, samePath);
-        inter.samePath = samePath;
+        if (usingOperationId) {
+          inter.name = getIdentifierFromOperatorId(inter.operationId);
+        } else {
+          inter.name = getIdentifierFromUrl(inter.path, inter.method, samePath);
+          inter.samePath = samePath;
+        }
       });
       mod.interfaces = _.uniqBy(mod.interfaces, "name");
       mod.description = tag.name;
-      const feMatch = tag.name.match(/前端:((.)*)\]/);
-      const beMatch = tag.name.match(/后端:((.)*);/);
-      mod.feOwners = feMatch && feMatch[1].split(",");
-      mod.beOwners = beMatch && beMatch[1].split(",");
+      // const feMatch = tag.name.match(/前端:((.)*)\]/);
+      // const beMatch = tag.name.match(/后端:((.)*);/);
+      // mod.feOwners = feMatch && feMatch[1].split(",");
+      // mod.beOwners = beMatch && beMatch[1].split(",");
 
       // if (tag.description.includes(" ")) {
       //   tag.description = tag.description.slice(

@@ -49,7 +49,10 @@ export class Cmd {
     return fetch(this.config.originUrl)
       .then(data => data.json())
       .then((data: DataSource) => {
-        this.newDataStructure = new DataStructure(data);
+        this.newDataStructure = new DataStructure(
+          data,
+          this.config.usingOperationId
+        );
         // this.dataStructure = this.newDataStructure;
       });
   }
@@ -107,7 +110,10 @@ export class Cmd {
       return fetch(this.config.originUrl)
         .then(data => data.json())
         .then((data: DataSource) => {
-          this.dataStructure = new DataStructure(data);
+          this.dataStructure = new DataStructure(
+            data,
+            this.config.usingOperationId
+          );
           this.write();
           this.save();
         });

@@ -13,6 +13,7 @@ export class Config {
   templatePath = "serviceTemplate";
   prettierConfig: object;
   lockPath = "swag.lock";
+  usingOperationId = false;
 }
 
 function wait(timeout = 100) {
@@ -37,12 +38,12 @@ export async function format(fileContent: string, prettierOpts) {
 }
 
 export function transformDescription(description: string) {
-  const words = description.split(' ').filter(word => word !== 'Controller');
+  const words = description.split(" ").filter(word => word !== "Controller");
 
   const [firstWord, ...rest] = words;
   const sFirstWord = firstWord.charAt(0).toLowerCase() + firstWord.slice(1);
 
-  return [sFirstWord, ...rest].join('');
+  return [sFirstWord, ...rest].join("");
 }
 
 export function clearPath(path: string) {
