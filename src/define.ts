@@ -11,6 +11,7 @@ import {
 export enum Type {
   integer = "integer",
   string = "string",
+  file = "string",
   array = "array",
   number = "number",
   boolean = "boolean",
@@ -216,6 +217,10 @@ export class Parameter {
     }
 
     if (this.schema && this.schema.type && this.schema.type !== Type.array) {
+      if (this.schema.type === Type.integer) {
+        return "number";
+      }
+
       return this.schema.type;
     }
 
@@ -241,6 +246,9 @@ export class Parameter {
     }
     if (this.type === Type.integer) {
       return "number";
+    }
+    if (this.type === Type.file) {
+      return "string";
     }
     if (this.schema && this.schema.type === Type.array) {
       const itemType = this.schema.items && this.schema.items.type;
