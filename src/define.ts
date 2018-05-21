@@ -499,8 +499,64 @@ export class DataStructure {
     );
   }
 
+  static getDuplicate<T>(arr: T[], idKey = "name"): null | T {
+    if (!arr || !arr.length) {
+      return null;
+    }
+
+    let result;
+
+    arr.forEach((item, itemIndex) => {
+      if (arr.slice(0, itemIndex).find(o => o[idKey] === item[idKey])) {
+        result = item;
+        return;
+      }
+    });
+
+    return result;
+  }
+
+  static propValidate(instance: DataStructure) {
+    const { mods, definitions } = instance;
+
+    let errors = [] as string[];
+
+    mods.forEach(mod => {
+      if (!mod.name) {
+        errors.push(`模块属性 name 缺失;`);
+      }
+    });
+
+    definitions.forEach(def => {
+      if (!def.name) {
+        errors.push(`基类属性 name 缺失;`);
+      }
+    });
+
+    if (errors && errors.length) {
+      throw new Error(errors.join("\n"));
+    }
+
+    return errors;
+  }
+
   static getDataFromLock(data: DataStructure) {
     const instance = new DataStructure();
+
+    // 重复模块和def判断
+    const dupDef = DataStructure.getDuplicate(instance.definitions);
+    const dupMod = DataStructure.getDuplicate(instance.mods);
+
+    if (dupDef) {
+      throw new Error(`基类${dupDef.name}重复了`);
+    }
+
+    if (dupMod) {
+      throw new Error(`模块${dupMod.name}重复了`);
+    }
+
+    // 缺失属性判断
+    DataStructure.propValidate(instance);
 
     instance.mods = data.mods.map(originMod => {
       const mod = new Mod();
