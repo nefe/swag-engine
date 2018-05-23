@@ -541,11 +541,9 @@ export class DataStructure {
   }
 
   static getDataFromLock(data: DataStructure) {
-    const instance = new DataStructure();
-
     // 重复模块和def判断
-    const dupDef = DataStructure.getDuplicate(instance.definitions);
-    const dupMod = DataStructure.getDuplicate(instance.mods);
+    const dupDef = DataStructure.getDuplicate(data.definitions);
+    const dupMod = DataStructure.getDuplicate(data.mods);
 
     if (dupDef) {
       throw new Error(`基类${dupDef.name}重复了`);
@@ -556,7 +554,9 @@ export class DataStructure {
     }
 
     // 缺失属性判断
-    DataStructure.propValidate(instance);
+    DataStructure.propValidate(data);
+
+    const instance = new DataStructure();
 
     instance.mods = data.mods.map(originMod => {
       const mod = new Mod();
