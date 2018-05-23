@@ -28,11 +28,15 @@ function deepDifInterface(
   nextInter: Interface,
   preLabel: string
 ): string[] {
-  const { parameters, response, summary } = preInter;
+  const { parameters, response, summary, method } = preInter;
   const details = [] as string[];
 
   if (summary !== nextInter.summary) {
     details.push(`${preLabel}的描述信息更新`);
+  }
+
+  if (method !== nextInter.method) {
+    details.push(`${preLabel}的METHOD更新`);
   }
 
   const {
